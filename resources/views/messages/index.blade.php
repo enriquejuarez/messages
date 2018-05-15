@@ -1,7 +1,7 @@
 @extends('layout')
 @section('contenido')
 <h1>Todos los mensajes</h1>
-<table width="100%" border="1">
+<table class="table">
 	<thead>
 		<tr>
 			<th>ID</th>
@@ -16,16 +16,16 @@
 			<tr>
 				<td>{{ $message->id }}</td>
 				<td>
-					<a href="{{ route('messages.show', $message->id) }}">{{ $message->nombre }}</a>
+					<a href="{{ route('mensajes.show', $message->id) }}">{{ $message->nombre }}</a>
 				</td>
 				<td>{{ $message->email }}</td>
 				<td>{{ $message->mensaje }}</td>
 				<td> 
-					<a href="{{ route('messages.edit', $message->id) }}">Editar</a>
-					<form style="display: inline;" method="POST" action="{{ route('messages.destroy', $message->id) }}">
+					<a href="{{ route('mensajes.edit', $message->id) }}" class="btn btn-info">Editar</a>
+					<form style="display: inline;" method="POST" action="{{ route('mensajes.destroy', $message->id) }}">
 						{!! method_field('DELETE') !!}
 						@csrf
-						<button type="submit">Eliminar</button>
+						<button type="submit" class="btn btn-danger">Eliminar</button>
 					</form>
 				</td>
 			</tr>

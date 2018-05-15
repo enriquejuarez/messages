@@ -2,18 +2,15 @@
 
 namespace App\Http\Controllers;
 
-use DB;
-use App\Message;
-use Carbon\Carbon;
+use App\User;
 use Illuminate\Http\Request;
 
-class MessagesController extends Controller
+class UsersController extends Controller
 {
     function __construct()
     {
-        $this->middleware('auth', ['except' => ['create', 'store']]);
+        $this->middleware(['auth', 'roles:admin,estudiante']);
     }
-
     /**
      * Display a listing of the resource.
      *
@@ -21,8 +18,8 @@ class MessagesController extends Controller
      */
     public function index()
     {
-        $messages = Message::all();
-        return view('messages.index', compact('messages'));
+        $users = User::all();
+        return view('users.index', compact('users'));
     }
 
     /**
@@ -32,7 +29,7 @@ class MessagesController extends Controller
      */
     public function create()
     {
-        return view('messages.create');
+        //
     }
 
     /**
@@ -43,8 +40,7 @@ class MessagesController extends Controller
      */
     public function store(Request $request)
     {
-        Message::create($request->all());
-        return redirect()->route('mensajes.create')->with('info', 'Hemos recibido tu mensaje');
+        //
     }
 
     /**
@@ -54,9 +50,8 @@ class MessagesController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function show($id)
-    {   
-        $message = Message::findOrFail($id);
-        return view('messages.show', compact('message'));
+    {
+        //
     }
 
     /**
@@ -67,8 +62,7 @@ class MessagesController extends Controller
      */
     public function edit($id)
     {
-        $message = Message::findOrFail($id);
-        return view('messages.edit', compact('message'));
+        //
     }
 
     /**
@@ -80,8 +74,7 @@ class MessagesController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $message = Message::findOrFail($id)->update($request->all());
-        return redirect()->route('mensajes.index');
+        //
     }
 
     /**
@@ -92,7 +85,6 @@ class MessagesController extends Controller
      */
     public function destroy($id)
     {
-        $message = Message::findOrFail($id)->delete();
-        return redirect()->route('mensajes.index');
+        //
     }
 }

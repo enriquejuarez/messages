@@ -10,18 +10,21 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
+Route::get('test', function(){
+	$user = new App\User;
+	$user->name = 'Marco';
+	$user->email = 'caenjuji3@gmail.com';
+	$user->password = bcrypt('123');
+	$user->rol = 'estudiante';
+	$user->save();
 
+	return $user;
+});
 Route::get('/', ['as' => 'home', 'uses' => 'PagesController@home']);
-
-/*Route::get('contacto', ['as' => 'contactos', 'uses' => 'PagesController@contact']);*/
-Route::post('contacto', 'PagesController@mensajes');
-
 Route::get('saludos/{nombre?}', ['as' => 'saludos', 'uses' => 'PagesController@saludo'])->where('nombre', "[A-Za-z]+");
+Route::resource('mensajes', 'MessagesController');
+Route::resource('usuarios', 'UsersController');
 
-Route::get('mensajes', ['as' => 'messages.index', 'uses' => 'MessagesController@index']);
-Route::get('mensajes/create', ['as' => 'messages.create', 'uses' => 'MessagesController@create']);
-Route::post('mensajes', ['as' => 'messages.store', 'uses' => 'MessagesController@store']);
-Route::get('mensajes/{id}', ['as' => 'messages.show', 'uses' => 'MessagesController@show']);
-Route::get('mensajes/{id}/edit', ['as' => 'messages.edit', 'uses' => 'MessagesController@edit']);
-Route::put('mensajes/{id}', ['as' => 'messages.update', 'uses' => 'MessagesController@update']);
-Route::delete('mensajes/{id}', ['as' => 'messages.destroy', 'uses' => 'MessagesController@destroy']);
+Route::get('login', ['as'=>'login', 'uses' => 'Auth\LoginController@showLoginForm']);
+Route::post('login', 'Auth\LoginController@login');
+Route::get('logout', 'Auth\LoginController@logout');
