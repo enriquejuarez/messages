@@ -12,10 +12,10 @@
 */
 Route::get('test', function(){
 	$user = new App\User;
-	$user->name = 'Marco';
-	$user->email = 'caenjuji3@gmail.com';
+	$user->name = 'Carlos';
+	$user->email = 'caenjuji@gmail.com';
 	$user->password = bcrypt('123');
-	$user->rol = 'estudiante';
+	$user->role_id = 1;
 	$user->save();
 
 	return $user;
