@@ -8,17 +8,17 @@
 			Nombre
 			<input class="form-control" type="text" name="nombre" value="{{ $message->nombre }}">
 			{!! $errors->first('nombre', '<span class=error>:message</span>') !!}
-		</label>
+		</label><br>
 		<label for="email">
 			Email
 			<input class="form-control" type="email" name="email" value="{{ $message->email }}">
 			{!! $errors->first('email', '<span class=error>:message</span>') !!}
-		</label>
-		<label for="nombre">
+		</label><br>
+		<label for="mensaje">
 			Mensaje
 			<textarea class="form-control" name="mensaje" cols="30" rows="10">{{ $message->mensaje }}</textarea>
 			{!! $errors->first('mensaje', '<span class=error>:message</span>') !!}
-		</label>
+		</label><br>
 		<input type="submit" value="Enviar" class="btn btn-primary">
 	</form>
 @stop

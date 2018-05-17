@@ -17,8 +17,19 @@
 					<td>{{ $user->id }}</td>
 					<td>{{ $user->name }}</td>
 					<td>{{ $user->email }}</td>
-					<td>{{ $user->role->display_name }}</td>
-					<td></td>
+					<td>
+						@foreach ($user->roles as $role)
+							{{ $role->display_name }}
+						@endforeach
+					</td>
+					<td>
+						<a href="{{ route('usuarios.edit', $user->id) }}" class="btn btn-info">Editar</a>
+						<form style="display: inline;" method="POST" action="{{ route('usuarios.destroy', $user->id) }}">
+							{!! method_field('DELETE') !!}
+							@csrf
+							<button type="submit" class="btn btn-danger">Eliminar</button>
+						</form>
+					</td>
 				</tr>
 			@endforeach
 		</tbody>
